@@ -1,0 +1,280 @@
+html, body {
+    background-color: rgb(255, 255, 255);
+    /* background-image: url('/static/images/img1.png'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;  */
+    margin: 0; 
+    height: 100%; 
+    width: 100%; 
+    
+}
+
+/* h3 {
+    color: bisque;
+    text-align: center;
+    align-content: center;
+} */
+
+.navbar-dark {
+    background-color: #ffffff; /* Darker shade */
+    position:relative;
+}
+
+.navbar-nav .nav-link {
+    font-family: 'Arial', sans-serif; /* Your preferred font */
+    font-size: 30px; /* Adjust size as needed */
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #515151; /* Lighter shade */
+    font-family: "JetBrains Mono",monospace;
+}
+
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: rgb(149, 149, 149); /* Change to any color */
+}
+
+.home-container {
+    display: flex;
+}
+
+.footer {
+    background-color: #000000;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: #ffffff;
+    font-family: "JetBrains Mono",monospace;
+}
+
+.footer-text {
+    color: #ffffff;
+    font-family: "JetBrains Mono",monospace;
+}
+
+.col-sm {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Set the column height to take the full height of the viewport */
+}
+
+
+.buttonn {
+    /* background-color: #FCFCFD; */
+    position:relative;
+    margin-top:15%;
+    margin-bottom: 10%;
+    position: fixed;
+}
+
+.read {
+    margin-top: 40%;
+    font-size: 70px;
+    color: black;
+    text-align: center;
+    font-family: "JetBrains Mono",monospace;
+    display: flex;
+}
+
+.read-num {
+    font-family: "JetBrains Mono",monospace;
+    font-size:55px;
+    text-align: center;
+    color: black;
+    margin-top: 5%;
+}
+
+.read-desc {
+    font-family: "JetBrains Mono",monospace;
+    font-size: 25px;
+    text-align: center;
+    color: black;
+    margin-top: 2%;
+}
+
+.streak {
+    margin-top: 30%;
+    font-size: 70px;
+    color: black;
+    text-align: center;
+    font-family: "JetBrains Mono",monospace;
+}
+
+.streak-num {
+    font-family: "JetBrains Mono",monospace;
+    font-size:55px;
+    text-align: center;
+    color: black;
+    margin-top: 5%;
+}
+
+.streak-desc {
+    font-family: "JetBrains Mono",monospace;
+    font-size: 25px;
+    text-align: center;
+    color: black;
+    margin-top: 2%;
+}
+
+.time {
+    margin-top: 10%;
+    font-size: 70px;
+    color: black;
+    text-align: center;
+    font-family: "JetBrains Mono",monospace;
+}
+
+.time-num {
+    font-family: "JetBrains Mono",monospace;
+    font-size:55px;
+    text-align: center;
+    color: black;
+    margin-top: 5%;
+}
+
+.time-desc {
+    font-family: "JetBrains Mono",monospace;
+    font-size: 25px;
+    text-align: center;
+    color: black;
+    margin-top: 2%;
+}
+
+.no-underline {
+    text-decoration: none; /* Remove underline */
+}
+
+.no-underline:hover,
+.no-underline:focus {
+    text-decoration: none; /* Ensure underline does not reappear on hover or focus */
+}
+
+
+.button-30 {
+  align-items: center;
+  appearance: none;
+  background-color: #FCFCFD;
+  border-radius: 10px;
+  border-width: 0;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#ffffff 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #36395A;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 60px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 22px;
+}
+
+.button-30:focus {
+  box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+}
+
+.button-30:hover {
+  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.button-30:active {
+  box-shadow: #D6D6E7 0 3px 7px inset;
+  transform: translateY(2px);
+}
+
+.read-container {
+    width: 1000px;  /* Width of the box */
+    height: 600px; /* Height of the box */
+    background-color: rgb(255, 255, 255); /* White background for the box */
+    border: 2px solid rgb(154, 154, 154); /* Gray border */
+    padding-top: 50px;
+    box-shadow: 0 16px 32px rgba(0,0,0,0.1); /* Optional: adds shadow to the box */
+    text-align: center;
+    /* margin-top: 10%;
+    margin-left: 10%;
+    margin-right: 20%; */
+    margin: auto;
+    border-radius: 20px;
+
+
+}
+
+.read-text{
+    font-family: "JetBrains Mono",monospace;
+    color: #000000;
+}
+
+.search {
+    width: 100%;
+    position: relative;
+    display: flex;
+}
+
+.searchTerm {
+    width: 100%;
+    border: 2px solid #323232;
+    border-right: none;
+    padding: 10px;
+    height: 40px;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    color: #9DBFAF;
+}
+
+.searchTerm:focus{
+    color: #00B4CC; 
+}
+
+.searchButton {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #323232;
+    background: #323232;
+    text-align: center;
+    color: #fff;
+    border-radius: 0px 20px 20px 0px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+    width: 40%;
+    height: 70%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.circle-container {
+    width: 50px;  /* Width of the box */
+    height: 50px; /* Height of the box */
+    /* background-color: rgb(255, 0, 0); */
+    background-color: transparent;
+    border: 2px solid rgb(154, 154, 154); /* Gray border */
+    padding-top: 10px;
+    box-shadow: 0 16px 32px rgba(0,0,0,0.1); 
+    text-align: center;
+    margin-top: 40%;
+    
+    margin: auto;
+    border-radius: 50px;
+}
