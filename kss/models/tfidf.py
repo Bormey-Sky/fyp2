@@ -1,19 +1,45 @@
+import re
+import pickle
+import numpy as np
+import pandas as pd
+from scipy.spatial import distance
+from sklearn.feature_extraction.text import TfidfVectorizer
+from utils import preprocess
+
+
+
+# if __name__ == "__main__":
+#     print(preprocess('\xa0Farencvaros\xa0'))
+
+
+# exit()
+
 class TFIDF:
     def __init__(self, config) -> None:
         self.similarity_measure = config["similarity_measure"]
+        self.decision_threshold = config["decision_threshold"]
+        self.model = TfidfVectorizer(
+            input="filename",
+            analyzer=preprocess,
+        )
     
-    def train(self):
-        raise NotImplementedError()
+    def train(self, datasets: pd.DataFrame):
+        datasets = datasets[datasets['class'] == 1]
+        self.model = self.model.fit(datasets['source'])
     
     def compare(self, source, target):
-        raise NotImplementedError()
+        source = np.array(self.model.transform([source]).todense())[0]
+        target = np.array(self.model.transform([target]).todense())[0]
+        dist = distance.cosine(source, target)
+        return dist, int(dist < self.decision_threshold)
     
     def save(self, output_path: str):
-        raise NotImplementedError()
-    
-    def calculate_similarity(self):
-        if self.similarity_measure == "asdf":
-            raise NotImplementedError()
+        with open(output_path, "wb") as outfile:
+            pickle.dump(self.model, outfile)
+            
+    def load(self, model_path: str):
+        with open(model_path, "rb") as infile:
+            self.model = pickle.load(infile)
     
 if __name__ == "__main__":
     model = TFIDF()
