@@ -4,6 +4,7 @@ import pandas as pd
 from utils import read_config_file
 from models.tfidf import TFIDF
 from models.fasttext import FASTTEXT
+from models.bert import BERT
 
 parser = argparse.ArgumentParser(description='Run the training loop.')
 parser.add_argument('config', type=str, help='Path to config file.')
@@ -13,7 +14,7 @@ parser.add_argument('dataset_path', type=str,
 parser.add_argument('--data_dir', type=str,
                     help='Path to dataset. (text file if of type khpos or directory if of type phylypo)', default="./datasets")
 parser.add_argument('--output_dir', type=str,
-                    help='Path to output directory.', default=".")
+                    help='Path to output directory.', default="./pretrained")
 parser.add_argument('--model_ext', type=str,
                     help='Path to output directory.', default="pkl")
 args = parser.parse_args()
@@ -30,6 +31,8 @@ if args.type == "tfidf":
     model = TFIDF(config)
 elif args.type == "fasttext":
     model = FASTTEXT(config)
+elif args.type == "bert":
+    model = BERT(config)
 
 model.train(datasets)
 
