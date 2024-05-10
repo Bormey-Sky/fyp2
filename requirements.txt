@@ -5,7 +5,4 @@ gensim==4.3.2
 tokenizers==0.19.1 
 transformers==4.40.2
 torch==2.3.0
-
-// =======
-
 Flask==3.0.3
