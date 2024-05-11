@@ -4,7 +4,8 @@ import pandas as pd
 from utils import read_config_file
 from models.tfidf import TFIDF
 from models.fasttext import FASTTEXT
-from models.bert_keras import BERTKERAS
+# from models.bert_keras import BERTKERAS
+from models.bert import BERT
 
 parser = argparse.ArgumentParser(description='Run the training loop.')
 parser.add_argument('config', type=str, help='Path to config file.')
@@ -25,8 +26,10 @@ if args.type == "tfidf":
     model = TFIDF(config)
 elif args.type == "fasttext":
     model = FASTTEXT(config)
-elif args.type == "bert_keras":
-    model = BERTKERAS(config)
+elif args.type == "bert":
+    model = BERT(config)
+# elif args.type == "bert_keras":
+#     model = BERTKERAS(config)
     
 model.load(args.model_file)
 
