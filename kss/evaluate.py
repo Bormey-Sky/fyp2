@@ -5,12 +5,13 @@ from tqdm import tqdm
 from models.tfidf import TFIDF
 from models.fasttext import FASTTEXT
 from utils import read_config_file
-from sklearn.metrics import accuracy_score, f1_score
+from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 
 parser = argparse.ArgumentParser(description='Run the training loop.')
 parser.add_argument('config', type=str, help='Path to config file.')
 parser.add_argument('type', type=str, help="The type of architecture to use.", choices=['tfidf','fasttext', 'bert'])
 parser.add_argument('model_file', type=str, help="The type of architecture to use.")
+# parser.add_argument('similarity_measurement', type=str, help="The type of similarity measurement to use.", choices=['cosine_similarity', 'euclidean_distance'])
 parser.add_argument('test_set', type=str,
                     help='Path to dataset csv file. (text file if of type khpos or directory if of type phylypo)')
 parser.add_argument('--data_dir', type=str,
@@ -52,9 +53,11 @@ pd.DataFrame(
 ).to_csv(
     os.path.join(
         args.output_dir,
-        os.path.basename(args.config).replace(".json", ".eval.csv")
+        os.path.basename(args.config).replace(".json", ".eu.eval.csv")
     ),
     index=False
 )
 print(f"Accuracy: {accuracy_score(y_true, y_pred)}")
+print(f"Precision: {precision_score(y_true, y_pred)}")
+print(f"Recall: {recall_score(y_true, y_pred)}")
 print(f"F1: {f1_score(y_true, y_pred)}")
