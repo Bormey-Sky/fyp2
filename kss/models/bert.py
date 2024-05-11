@@ -59,6 +59,7 @@ class BERT:
         self.epochs = config["epochs"]
         self.max_len = config["max_len"]        
         self.batch_size = config["batch_size"]
+        self.similarity_measure = config["similarity_measure"]
         
     def train(self, datasets: str):
         # print(f"Training with dataset at: {datasets}")
@@ -88,8 +89,9 @@ class BERT:
             print(f"Average loss for epoch {epoch + 1}: {avg_loss:.4f}")
         
     def compare(self, source, target):
-        source = self.get_embedding(source)
-        target = self.get_embedding(target)
+        source = self.get_embedding(source).flatten()
+        target = self.get_embedding(target).flatten()
+
         if self.similarity_measure == "cosine_similarity":
             dist = distance.cosine(source, target)
         elif self.similarity_measure == "euclidean_distance":
@@ -100,6 +102,7 @@ class BERT:
     def get_embedding(self, text):
         encoded_input = self.tokenizer(text, return_tensors='pt', padding=True, truncation=True, max_length=self.max_len)
         encoded_input = {key: value.to(self.device) for key, value in encoded_input.items()}
+
         with torch.no_grad():
             outputs = self.model(**encoded_input)
         embeddings = outputs.last_hidden_state.mean(dim=1).cpu().numpy()
@@ -107,10 +110,9 @@ class BERT:
         
     def save(self, output_path: str):
         self.model.save_pretrained(output_path)
-        self.tokenizer.save_pretrained(output_path)
-        
+        self.tokenizer.save_pretrained(f"token.{output_path}")
         
     def load(self, model_path: str):
-        self.model = BertModel.from_pretrained(model_path)
-        self.tokenizer = BertTokenizer.from_pretrained(model_path)
+        self.model = BertModel.from_pretrained(model_path).to(self.device)
+        self.tokenizer = BertTokenizer.from_pretrained(f"token.{model_path}")
         
