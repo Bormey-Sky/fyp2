@@ -30,7 +30,12 @@ class TFIDF:
     def compare(self, source, target):
         source = np.array(self.model.transform([source]).todense())[0]
         target = np.array(self.model.transform([target]).todense())[0]
-        dist = distance.cosine(source, target)
+        # dist = distance.cosine(source, target)
+        # dist = distance.euclidean(source, target)
+        if self.similarity_measure == "cosine_similarity":
+            dist = distance.cosine(source, target)
+        elif self.similarity_measure == "euclidean_distance":
+            dist = distance.euclidean(source, target)
         return dist, int(dist < self.decision_threshold)
     
     def save(self, output_path: str):

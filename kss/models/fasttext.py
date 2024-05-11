@@ -34,6 +34,7 @@ class FASTTEXT():
             max_n=config["max_n"]
         )
         self.decision_threshold = config['decision_threshold']
+        self.similarity_measure = config["similarity_measure"]
         
         
     def train(self, datasets: str):
@@ -56,7 +57,10 @@ class FASTTEXT():
     def compare(self, source, target):
         source = self.__doc_to_vec(source)
         target = self.__doc_to_vec(target)
-        dist = distance.cosine(source, target)
+        if self.similarity_measure == "cosine_similarity":
+            dist = distance.cosine(source, target)
+        elif self.similarity_measure == "euclidean_distance":
+            dist = distance.euclidean(source, target)
         return dist, int(dist < self.decision_threshold)
         
     def __doc_to_vec(self, doc):
