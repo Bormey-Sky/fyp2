@@ -3,9 +3,9 @@
 {% block content %}
 
 <!-- <h1>heading dak ey ke</h1> -->
-<div class="read-container ">
+<!-- <div class="read-container ">
 
-    <!-- <p class="read-text">this is where the text would be</p> -->
+
     <div class="wrap">
         <div class="search">
            <input type="text" class="searchTerm" placeholder="Search?">
@@ -14,18 +14,18 @@
           </button>
         </div>
         <div class="row">
-            <div class="col">
+            <div class="col-sm-12 col-md-6 col-lg-4">
                 <div class="circle-container">
     
                 </div>
             </div>
             
-            <div class="col">
+            <div class="col-sm-12 col-md-6 col-lg-4">
                 <div class="circle-container">
     
                 </div>
             </div>
-            <div class="col">
+            <div class="col-sm-12 col-md-6 col-lg-4">
                 <div class="circle-container">
     
                 </div>
@@ -33,29 +33,34 @@
          </div>
      </div>
 
-     <!-- <div class="circle-container">
+</div> -->
+<div class="page-wrapper">
+    <div id="sidebar-toggle" onclick="toggleSidebar()">
+        <!-- This is the circle button for the sidebar -->
+    </div>
+    <div id="sidebar" class="sidebar">
+        <ul>
+            <li><a href="#">Menu Item 1</a></li>
+            <li><a href="#">Menu Item 2</a></li>
+            <li><a href="#">Menu Item 3</a></li>
+            <!-- Additional menu items here -->
+        </ul>
+    </div>
 
-     </div> -->
-     <!-- <div class="row">
-        <div class="col">
-            <div class="circle-container">
-
-            </div>
+    <div class="content-area">
+        <div class="text-input-area">
+            <textarea placeholder="Enter text here..."></textarea>
         </div>
-        
-        <div class="col">
-            <div class="circle-container">
-
-            </div>
+        <div class="divider"></div>
+        <div class="document-list-area">
+            <ul>
+                <li>Document 1</li>
+                <li>Document 2</li>
+                <!-- Additional documents can be listed here -->
+            </ul>
         </div>
-        <div class="col">
-            <div class="circle-container">
-
-            </div>
-        </div>
-     </div> -->
+    </div>
 </div>
-
-
+<script src="static/script.js"></script>
 
 {% endblock %}
