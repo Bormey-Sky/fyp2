@@ -184,23 +184,12 @@ html, body {
   font-size: 22px;
 }
 
-.button-30:focus {
-  box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
-}
-
-.button-30:hover {
-  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
-  transform: translateY(-2px);
-}
-
-.button-30:active {
-  box-shadow: #D6D6E7 0 3px 7px inset;
-  transform: translateY(2px);
-}
 
 .read-container {
-    width: 1000px;  /* Width of the box */
-    height: 600px; /* Height of the box */
+    width: 80vw;
+    max-width: 1000px; /* Ensure it does not grow beyond 1000px */
+    height: auto; /* Let the height scale with the content */
+    padding: 20vw; /* Height of the box */
     background-color: rgb(255, 255, 255); /* White background for the box */
     border: 2px solid rgb(154, 154, 154); /* Gray border */
     padding-top: 50px;
@@ -212,13 +201,39 @@ html, body {
     margin: auto;
     border-radius: 20px;
 
-
+    
 }
 
 .read-text{
     font-family: "JetBrains Mono",monospace;
     color: #000000;
+    font-size: 16px;
 }
+@media (min-width: 768px) {
+    .read-text {
+        font-size: 25px; /* Larger text on larger screens */
+    }
+}
+
+.wrap {
+    width: 90%; /* Make it take more space on smaller screens */
+    height: auto; /* Let the height be dynamic */
+    position: relative; /* Adjust based on layout needs */
+    margin: 20px auto; /* Centering it horizontally */
+    transform: none; /* Remove transform for better control */
+}
+
+@media (min-width: 768px) {
+    .wrap {
+        width: 40%; /* Smaller width on larger screens */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+
 
 .search {
     width: 100%;
@@ -263,7 +278,6 @@ html, body {
     transform: translate(-50%, -50%);
 }
 
-
 .circle-container {
     width: 50px;  /* Width of the box */
     height: 50px; /* Height of the box */
@@ -277,4 +291,145 @@ html, body {
     
     margin: auto;
     border-radius: 50px;
+}
+
+
+.footer {
+    background-color: #000000;
+    position: fixed; /* Keep this outside the media query to apply universally */
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: #ffffff;
+    font-family: "JetBrains Mono", monospace;
+    text-align: center;
+    z-index: 1000; /* Ensuring it stays on top */
+    padding: 10px 0; /* Add some padding */
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1); /* Optional: adds shadow for better visibility */
+}
+
+
+
+/* .button-30:focus {
+  box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+}
+
+.button-30:hover {
+  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.button-30:active {
+  box-shadow: #D6D6E7 0 3px 7px inset;
+  transform: translateY(2px);
+} */
+
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+.page-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#sidebar-toggle {
+    position: absolute;
+    top: 20px; /* Adjust based on design preference */
+    left: 0px;
+    width: 30px;
+    height: 30px;
+    background-color: blue;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.content-area {
+    display: flex;
+    height: 100%;
+    margin-left: 40px; /* Space for sidebar */
+}
+
+.text-input-area {
+    flex: 1; /* Flex grow */
+    padding: 20px;
+    border-right: 2px solid #ccc; /* Divider line */
+}
+
+textarea {
+    width: 100%;
+    height: 100%;
+    border: none;
+    resize: none; /* Prevent resizing */
+}
+
+.divider {
+    width: 1px;
+    background-color: #ccc;
+    height: 600px;
+}
+
+.document-list-area {
+    flex: 1; /* Flex grow */
+    padding: 20px;
+}
+
+.document-list-area ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.document-list-area li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+#sidebar-toggle {
+    position: fixed; /* Ensures it stays in a fixed position relative to the viewport */
+    top: 90px; /* Adjust this value to position vertically */
+    /* left: 0; Aligns the button to the far left of the screen */
+    right: 10px;
+    width: 30px; /* Diameter of the button */
+    height: 30px; /* Diameter of the button */
+    background-color: blue; /* Button color, change as needed */
+    border-radius: 50%; /* Makes the button circular */
+    cursor: pointer; /* Changes cursor to pointer on hover to indicate it's clickable */
+    z-index: 1001; /* Ensures it stays above other elements */
+    opacity: 1; /* Fully visible by default */
+    transition: opacity 0.3s ease; /* Smooth transition for opacity changes */
+    margin-left: 30px;
+}
+
+
+.sidebar {
+    position: fixed;
+    top: 20;
+    left: -250px; /* Start off-screen */
+    width: 200px;
+    height: 70%;
+    background: rgb(203, 203, 203);
+    transition: 0.3s;
+    padding: 60px;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    display: block;
+    padding: 10px;
 }
