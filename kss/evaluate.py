@@ -2,20 +2,20 @@ import os
 import argparse
 import pandas as pd
 from tqdm import tqdm
+from models.bert import BERT
 from models.tfidf import TFIDF
-from models.fasttext import FASTTEXT
 from utils import read_config_file
+from models.fasttext import FASTTEXT
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 
 parser = argparse.ArgumentParser(description='Run the training loop.')
 parser.add_argument('config', type=str, help='Path to config file.')
 parser.add_argument('type', type=str, help="The type of architecture to use.", choices=['tfidf','fasttext', 'bert'])
 parser.add_argument('model_file', type=str, help="The type of architecture to use.")
-# parser.add_argument('similarity_measurement', type=str, help="The type of similarity measurement to use.", choices=['cosine_similarity', 'euclidean_distance'])
 parser.add_argument('test_set', type=str,
-                    help='Path to dataset csv file. (text file if of type khpos or directory if of type phylypo)')
+                    help='Path to dataset csv file.')
 parser.add_argument('--data_dir', type=str,
-                    help='Path to dataset. (text file if of type khpos or directory if of type phylypo)', default="./datasets")
+                    help='Path to dataset.', default="./datasets")
 parser.add_argument('--output_dir', type=str,
                     help='Path to output directory.', default=".")
 args = parser.parse_args()
@@ -27,6 +27,9 @@ if args.type == "tfidf":
     model = TFIDF(config)
 elif args.type == "fasttext":
     model = FASTTEXT(config)
+elif args.type == "bert":
+    model = BERT(config)
+    
 
 model.load(args.model_file)
 

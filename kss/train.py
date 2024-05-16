@@ -1,18 +1,18 @@
-import argparse
 import os
+import argparse
 import pandas as pd
-from utils import read_config_file
-from models.tfidf import TFIDF
-from models.fasttext import FASTTEXT
 from models.bert import BERT
+from models.tfidf import TFIDF
+from utils import read_config_file
+from models.fasttext import FASTTEXT
 
 parser = argparse.ArgumentParser(description='Run the training loop.')
 parser.add_argument('config', type=str, help='Path to config file.')
 parser.add_argument('type', type=str, help="The type of architecture to use.", choices=['tfidf','fasttext', 'bert'])
 parser.add_argument('dataset_path', type=str,
-                    help='Path to dataset csv file. (text file if of type khpos or directory if of type phylypo)')
+                    help='Path to dataset csv file')
 parser.add_argument('--data_dir', type=str,
-                    help='Path to dataset. (text file if of type khpos or directory if of type phylypo)', default="./datasets")
+                    help='Path to dataset', default="./datasets")
 parser.add_argument('--output_dir', type=str,
                     help='Path to output directory.', default="./pretrained")
 parser.add_argument('--model_ext', type=str,
