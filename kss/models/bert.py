@@ -1,9 +1,9 @@
 import torch 
-from transformers import BertModel, BertTokenizer, BertForSequenceClassification, AdamW, get_linear_schedule_with_warmup
 import pandas as pd
-from torch.utils.data import Dataset, DataLoader
 from tqdm import tqdm
 from scipy.spatial import distance
+from torch.utils.data import Dataset, DataLoader
+from transformers import BertModel, BertTokenizer, BertForSequenceClassification, AdamW, get_linear_schedule_with_warmup
 
 class PrepDataset(Dataset):
     def __init__(self, datasets, tokenizer, max_len):
@@ -60,6 +60,7 @@ class BERT:
         self.max_len = config["max_len"]        
         self.batch_size = config["batch_size"]
         self.similarity_measure = config["similarity_measure"]
+        self.decision_threshold = config["decision_threshold"]
         
     def train(self, datasets: str):
         # print(f"Training with dataset at: {datasets}")
@@ -87,6 +88,10 @@ class BERT:
             
             avg_loss = total_loss / len(self.dataloader)
             print(f"Average loss for epoch {epoch + 1}: {avg_loss:.4f}")
+            
+            
+            ## add training loop to stop the training once best result is reached
+            ## add log to training for graphs
         
     def compare(self, source, target):
         source = self.get_embedding(source).flatten()
@@ -96,8 +101,9 @@ class BERT:
             dist = distance.cosine(source, target)
         elif self.similarity_measure == "euclidean_distance":
             dist = distance.euclidean(source, target)
-        return dist
+        return dist, source, target
     # , int(dist < self.decision_threshold)
+
         
     def get_embedding(self, text):
         encoded_input = self.tokenizer(text, return_tensors='pt', padding=True, truncation=True, max_length=self.max_len)
@@ -110,9 +116,9 @@ class BERT:
         
     def save(self, output_path: str):
         self.model.save_pretrained(output_path)
-        self.tokenizer.save_pretrained(f"token.{output_path}")
+        self.tokenizer.save_pretrained(output_path)
         
     def load(self, model_path: str):
         self.model = BertModel.from_pretrained(model_path).to(self.device)
-        self.tokenizer = BertTokenizer.from_pretrained(f"token.{model_path}")
+        self.tokenizer = BertTokenizer.from_pretrained(model_path)
         
